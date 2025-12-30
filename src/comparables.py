@@ -36,19 +36,52 @@ combined_df["pe"] = np.where(
     np.nan,
 )
 peers_df = combined_df.drop(index=target_company)
+peers_df = peers_df.rename(
+    columns={
+        "price": "Price (USD / share)",
+        "diluted_shares": "Diluted shares (millions)",
+        "cash": "cash (USD millions)",
+        "short_term_debt": "Short-Term Debt (USD millions)",
+        "long_term_debt": "Long-Term Debt (USD millions)",
+        "minority_interest": "Minority Interest (USD millions)",
+        "preferred_equity": "Preferred Equity (USD millions)",
+        "equity_value": "Equity value (USD millions)",
+        "total_debt": "Total Debt (USD millions)",
+        "enterprise_value": "Enterprise value (USD millions)",
+        "ev_ebitda": "EV / EBITDA (LTM)",
+        "pe": "P / E (LTM)",
+        "revenue_ltm": "Revenue LTM (USD millions)",
+        "ebitda_ltm": "EBITDA LTM (USD millions)",
+        "net_income_ltm": "Net income LTM (USD millions)",
+        "net_debt": "Net debt (USD millions)"
+    }
+)
+
 target_df = combined_df.loc[[target_company]]
+target_df = target_df.rename(
+    columns={
+        "price": "Price (USD / share)",
+        "diluted_shares": "Diluted shares (millions)",
+        "equity_value": "Equity value (USD millions)",
+        "enterprise_value": "Enterprise value (USD millions)",
+        "revenue_ltm": "Revenue LTM (USD millions)",
+        "ebitda_ltm": "EBITDA LTM (USD millions)",
+        "net_income_ltm": "Net income LTM (USD millions)",
+        "net_debt": "Net debt (USD millions)",
+    }
+)
 
-ev_ebitda_median = peers_df["ev_ebitda"].median()
-ev_ebitda_min = peers_df["ev_ebitda"].min()
-ev_ebitda_max = peers_df["ev_ebitda"].max()
-pe_median = peers_df["pe"].median()
-pe_min = peers_df["pe"].min()
-pe_max = peers_df["pe"].max()
+ev_ebitda_median = peers_df["EV / EBITDA (LTM)"].median()
+ev_ebitda_min = peers_df["EV / EBITDA (LTM)"].min()
+ev_ebitda_max = peers_df["EV / EBITDA (LTM)"].max()
+pe_median = peers_df["P / E (LTM)"].median()
+pe_min = peers_df["P / E (LTM)"].min()
+pe_max = peers_df["P / E (LTM)"].max()
 
-peer_multiples_df = peers_df[["ev_ebitda","pe"]].copy()
+peer_multiples_df = peers_df[["EV / EBITDA (LTM)","P / E (LTM)"]].copy()
 peer_multiples_df["notes"] = ""
-peer_multiples_df.loc[peer_multiples_df["ev_ebitda"].isna(), "notes"] += "EV/EBITDA n/a; "
-peer_multiples_df.loc[peer_multiples_df["pe"].isna(), "notes"] += "P/E n/a; "
+peer_multiples_df.loc[peer_multiples_df["EV / EBITDA (LTM)"].isna(), "notes"] += "EV/EBITDA n/a; "
+peer_multiples_df.loc[peer_multiples_df["P / E (LTM)"].isna(), "notes"] += "P/E n/a; "
 peer_multiples_df["notes"] = peer_multiples_df["notes"].str.strip().str.rstrip(";")
 
 
@@ -63,9 +96,9 @@ peer_summary_stats_df = pd.DataFrame(
 
 
 # Implied valuation for target using peer EV/EBITDA range
-target_ebitda = float(target_df["ebitda_ltm"].iloc[0])
-target_net_debt = float(target_df["net_debt"].iloc[0])
-target_shares = float(target_df["diluted_shares"].iloc[0])
+target_ebitda = float(target_df["EBITDA LTM (USD millions)"].iloc[0])
+target_net_debt = float(target_df["Net debt (USD millions)"].iloc[0])
+target_shares = float(target_df["Diluted shares (millions)"].iloc[0])
 
 
 implied_ev = pd.Series(
@@ -76,17 +109,17 @@ implied_per_share = implied_equity / target_shares
 
 nvda_implied_valuation = pd.DataFrame(
     {
-        "implied_enterprise_value": implied_ev,
-        "implied_equity_value": implied_equity,
-        "implied_per_share_value": implied_per_share,
+        "implied_enterprise_value (USD millions)": implied_ev,
+        "implied_equity_value (USD millions)": implied_equity,
+        "implied_per_share_value (USD)": implied_per_share,
     }
 )
 
 
-peers_df.to_csv("data/processed/peers_set.csv")
-peer_multiples_df.to_csv("data/processed/peer_multiples.csv")
-peer_summary_stats_df.to_csv("data/processed/peer_summary_stats.csv")
-nvda_implied_valuation.to_csv("data/processed/nvda_implied_valuation.csv")
+peers_df.to_csv("outputs/tables/peers_set.csv")
+peer_multiples_df.to_csv("outputs/tables/peer_multiples.csv")
+peer_summary_stats_df.to_csv("outputs/tables/peer_summary_stats.csv")
+nvda_implied_valuation.to_csv("outputs/tables/nvda_implied_valuation.csv")
 
 
 if __name__ == "__main__":
