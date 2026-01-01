@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-raw_data_path = "data/raw/"
+raw_data_path = "data/raw/comparables/"
 target_company = "NVDA"
 
 
@@ -115,11 +115,11 @@ nvda_implied_valuation = pd.DataFrame(
     }
 )
 
-
-peers_df.to_csv("outputs/tables/peers_set.csv")
-peer_multiples_df.to_csv("outputs/tables/peer_multiples.csv")
-peer_summary_stats_df.to_csv("outputs/tables/peer_summary_stats.csv")
-nvda_implied_valuation.to_csv("outputs/tables/nvda_implied_valuation.csv")
+combined_df.to_csv("data/processed/comparables/raw_merged.csv")
+peers_df.to_csv("outputs/comparables/tables/peers_set.csv")
+peer_multiples_df.to_csv("outputs/comparables/tables/peer_multiples.csv")
+peer_summary_stats_df.to_csv("outputs/comparables/tables/peer_summary_stats.csv")
+nvda_implied_valuation.to_csv("outputs/comparables/tables/nvda_implied_valuation.csv")
 
 
 if __name__ == "__main__":
