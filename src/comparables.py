@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-raw_data_path = "data/raw/comparables/"
+raw_data_path = "data/comparables/raw/"
 target_company = "NVDA"
 
 
@@ -115,7 +115,7 @@ nvda_implied_valuation = pd.DataFrame(
     }
 )
 
-combined_df.to_csv("data/processed/comparables/raw_merged.csv")
+combined_df.to_csv("data/comparables/processed/raw_merged.csv")
 peers_df.to_csv("outputs/comparables/tables/peers_set.csv")
 peer_multiples_df.to_csv("outputs/comparables/tables/peer_multiples.csv")
 peer_summary_stats_df.to_csv("outputs/comparables/tables/peer_summary_stats.csv")
