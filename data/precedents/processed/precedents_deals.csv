@@ -1,5 +1,5 @@
-deal_name,acquirer,target,announcement_date,completion_date,buyer_type,precedent_category,offer_price,fully_diluted_shares,cash_and_equivalents,short_term_debt,long_term_debt,minority_interest,preferred_equity
-amd_xilinx,amd,xilinx,2020-10-26,2022-02-14,strategic,core semiconductor control,
-avago_broadcom,avago,broadcom,2015-05-28,2016-02-01,strategic (hybrid),core semiconductor control,
-ibm_redhat,ibm,redhat,2018-10-28,2019-07-09,strategic,strategic infrastructure platform,
-dell_emc,dell,emc,2015-10-12,2016-09-07,strategic,strategic infrastructure platform,
+deal_name,acquirer,target,announcement_date,completion_date,buyer_type,precedent_category,offer_type,offer_price,cash_price,exchange_ratio,acquirer_price_at_announcement,fully_diluted_shares,cash_and_equivalents,short_term_debt,long_term_debt,minority_interest,preferred_equity,revenue_ltm,ebitda_ltm
+amd_xilinx,amd,xilinx,2020-10-26,2022-02-14,strategic,core semiconductor control,stock,,0,1.7234,82.23,246.763,3095.936,499.662,1492.066,0,0,2972.876,718.366
+avago_broadcom,avago,broadcom,2015-05-28,2016-02-01,strategic (hybrid),core semiconductor control,mixed,,54.50,0.4378,14.15,613,2951,0,1593,0,0,8502,747
+ibm_redhat,ibm,redhat,2018-10-28,2019-07-09,strategic,strategic infrastructure platform,cash,,190.00,,,186.936,1768.46,4.435,512.095,0,0,3156.587,494.62
+dell_emc,dell,emc,2015-10-12,2016-09-07,strategic,strategic infrastructure platform,mixed,,24.05,0.1145,65.34,1947,7742,1948,5472,1485,0,24691,3577

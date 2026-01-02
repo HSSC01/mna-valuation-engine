@@ -18,7 +18,7 @@ raw data (all values in millions except for per-share values)
     - total_debt = short_term_debt + long_term_debt
     - net_debt = total_debt - cash
     - enterprise_value = equity_value + net_debt + minority_interest + preferred_equity
-    - cash (millions) = 10-Q -> "Cash and cash equivalents" + "Marketable securities/short-term investments"
+    - cash (millions) = 10-Q -> "Cash and cash equivalents" + "Marketable securities" + "short-term investments"
 
 - financials
     - pulled from latest 10-Q reports
@@ -97,4 +97,24 @@ Precedents:
         = shows what control cleared at for large, entrenched infrastructure platforms
     = while no transaction is a perfect analogue for nvidia, the selected precedents capture how strategic buyers have historically priced control of large-scale semiconductor and infrastructure platforms with embedded optionality
 - Buyer type is used to distinguish strategic acquisitions, which often embed synergies and control premiums, from financial sponsor transactions with return constraints
-
+- offer price is the implied value per target common share at announcement, using acquirer share prices on the announcement date.
+    - amd / xilinx
+        - each share of xilinx converted to the right to receive 1.7234 shares of AMD common stock
+    - avago / broadcom
+        - each share of broadcom has the right to receive $54.50 cash or 0.4378 shares of avago
+    - ibm / red hat
+        - each share of red hat converted to the right to receive $190 in cash
+    - dell / emc
+        - each share of emc will be cancelled and converted into the right to receive $24.05 in cash and class v common stock
+- all-cash consideration
+    - offer_price = stated cash per target share
+    - ibm / red hate, offer_price = $190
+- all-stock consideration
+    - offer_price = exchange_ratio * acquirer share price (announcement date)
+    - amd / xilinx, offer_price = 1.7234 * P_AMD
+- mixed cash + stock
+    - offer_price = cash_per_share + (exchange_ratio * acquirer share price)
+    - avago / broadcom, offer_price = 54.5 + (0.4378 * acquirer share price)
+    - dell / emc, offer_price = 24.05 + (class v exchange ratio * dell class v price)
+- equity_value = offer_price * fully_diluted_shares
+- enterprise_value = equity_value + net_debt + minority interest + preferred equity
