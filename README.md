@@ -25,7 +25,6 @@ raw data (all values in millions except for per-share values)
     - negative ebitda > ev/ebitda excluded, flagged
     - negative net income > p/e excluded, flagged
     - ltm period must be consistent across peers
-    - LTM = 9M current year + 3M prior year (same quarter)
     - ebitda_ltm (millions) = "operating income proxy"
 
 Trading comparables suggest NVIDIA trades at a premium to peers on EV/EBITDA, reflecting superior margins, growth visibility, and balance sheet strength. Intel is retained in the peer set for scale and cycle context but excluded from affected multiples due to negative LTM profitability.
