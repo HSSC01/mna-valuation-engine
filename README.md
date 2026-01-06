@@ -28,7 +28,7 @@ raw data (all values in millions except for per-share values)
     - ebitda_ltm (millions) = "operating income proxy"
 
 Trading comparables suggest NVIDIA trades at a premium to peers on EV/EBITDA, reflecting superior margins, growth visibility, and balance sheet strength. Intel is retained in the peer set for scale and cycle context but excluded from affected multiples due to negative LTM profitability.
-
+Forward-looking multiples are standard in professional equity research and M&A advisory. However, institutional consensus data is not publicly accessible. This project therefore either (i) relies on LTM multiples with explicit limitations, or (ii) constructs deterministic NTM proxies from transparent operating assumptions. This preserves conceptual correctness without introducing opaque estimation.
 
 
 Precedents:
