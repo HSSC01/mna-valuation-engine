@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import re
 from pathlib import Path
-
+pd.options.display.float_format='{:,.2f}'.format
 
 
 def run_trading_comps(target_company: str):
@@ -137,17 +137,18 @@ def run_trading_comps(target_company: str):
         }
     )
 
-    combined_df.to_csv("data/comparables/processed/raw_merged.csv")
-    peers_df.to_csv("outputs/comparables/tables/peers_set.csv")
-    peer_multiples_df.to_csv("outputs/comparables/tables/peer_multiples.csv")
-    peer_summary_stats_df.to_csv("outputs/comparables/tables/peer_summary_stats.csv")
-    target_implied_valuation.to_csv(f"outputs/comparables/tables/{target_company}_implied_valuation.csv")
+    combined_df.to_csv("data/comparables/processed/raw_merged.csv", float_format="%.3f")
+    peers_df.to_csv("outputs/comparables/tables/peers_set.csv", float_format="%.3f")
+    peer_multiples_df.to_csv("outputs/comparables/tables/peer_multiples.csv", float_format="%.3f")
+    peer_summary_stats_df.to_csv("outputs/comparables/tables/peer_summary_stats.csv", float_format="%.3f")
+    target_implied_valuation.to_csv(f"outputs/comparables/tables/{target_company}_implied_valuation.csv", float_format="%.3f")
     return {
         "combined": combined_df,
         "peers": peers_df,
         "peer_multiples": peer_multiples_df,
         "peer_summary": peer_summary_stats_df,
         "implied_valuation": target_implied_valuation
-    }
+    }, print(f"{target_company} implied valuation"), print(target_implied_valuation)
 
-# if __name__ == "__main__":
+if __name__ == "__main__":
+    run_trading_comps("NVDA")
